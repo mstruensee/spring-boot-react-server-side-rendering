@@ -9,10 +9,10 @@ import { Hadouken } from "./components/hadouken/hadouken"
 
 window.render = (template, model) => {
     const context = createServerRenderContext()
-    const { location } = JSON.parse(model.get("req"))
-    const initialState = JSON.parse(model.get("initialState"))
+    const { location } = JSON.parse(model.get("requestData"))
+    const preloadedState = JSON.parse(model.get("preloadedState"))
 
-    const store = createStore(reducers, initialState, applyMiddleware(thunk))
+    const store = createStore(reducers, preloadedState, applyMiddleware(thunk))
 
     const markup = renderToString(
         <Provider store={ store }>
@@ -24,5 +24,5 @@ window.render = (template, model) => {
 
     return template
         .replace("SERVER_RENDERED_HTML", markup)
-        .replace("SERVER_RENDERED_STATE", JSON.stringify(initialState))
+        .replace("SERVER_RENDERED_STATE", JSON.stringify(preloadedState))
 }

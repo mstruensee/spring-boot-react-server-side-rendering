@@ -1,4 +1,4 @@
-package software.we.create.hadouken
+package software.wecreate.hadouken
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.stereotype.Controller

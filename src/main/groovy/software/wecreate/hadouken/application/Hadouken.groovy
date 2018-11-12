@@ -1,4 +1,4 @@
-package software.we.create.hadouken
+package software.wecreate.hadouken.application
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
