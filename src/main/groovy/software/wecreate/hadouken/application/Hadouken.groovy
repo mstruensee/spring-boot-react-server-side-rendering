@@ -8,10 +8,10 @@ import org.springframework.web.servlet.view.script.ScriptTemplateConfigurer
 import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver
 
 @SpringBootApplication
-class HadoukenApplication {
+class Hadouken {
 
 	static void main(String[] args) {
-		SpringApplication.run HadoukenApplication, args
+		SpringApplication.run Hadouken, args
 	}
 
 	@Bean

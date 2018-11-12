@@ -7,8 +7,8 @@ import HtmlWebpackPlugin from "html-webpack-plugin"
 export default {
     devtool: "cheap-module-eval-source-map",
     entry: {
-        server: "./src/main/react/software/we/create/hadouken/server.js",
-        client: "./src/main/react/software/we/create/hadouken/client.js"
+        server: "./src/main/react/software/wecreate/hadouken/server.js",
+        client: "./src/main/react/software/wecreate/hadouken/client.js"
     },
     output: {
         path: path.join(__dirname, "src/main/resources/public"),
@@ -17,9 +17,9 @@ export default {
     resolve: {
         extensions: ["", ".js", ".css"],
         alias: {
-            "styles": __dirname + "/src/main/react/software/we/create/hadouken/styles",
-            "components": __dirname + "/src/main/react/software/we/create/hadouken/components",
-            "images": __dirname + "/src/main/react/software/we/create/hadouken/images",
+            "styles": __dirname + "/src/main/react/software/wecreate/hadouken/styles",
+            "components": __dirname + "/src/main/react/software/wecreate/hadouken/components",
+            "images": __dirname + "/src/main/react/software/wecreate/hadouken/images",
             "node_modules": __dirname + "/node_modules"
         }
     },
@@ -37,7 +37,7 @@ export default {
         new ExtractTextPlugin("/[name].css"),
         new HtmlWebpackPlugin({
             hash: true,
-            template: "src/main/react/software/we/create/hadouken/index.html",
+            template: "src/main/react/software/wecreate/hadouken/index.html",
             filename: "index.html",
             minify: {
                 collapseWhitespace: false
