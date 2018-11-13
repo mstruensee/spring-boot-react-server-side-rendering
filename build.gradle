@@ -32,3 +32,29 @@ dependencies {
 	runtimeOnly('com.h2database:h2')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
+
+task buildFrontend() {
+	doFirst {
+		exec {
+			commandLine "npm", "i"
+			ext.output = { return new ByteArrayOutputStream().toString() }
+		}
+	}
+	doLast {
+		exec {
+			commandLine "npm", "run", "build:production"
+			ext.output = { return new ByteArrayOutputStream().toString() }
+		}
+	}
+}
+
+jar.dependsOn buildFrontend
+
+//test {
+//	doLast {
+//		exec {
+//			commandLine "npm", "run", "test"
+//			ext.output = { return new ByteArrayOutputStream().toString() }
+//		}
+//	}
+//}
