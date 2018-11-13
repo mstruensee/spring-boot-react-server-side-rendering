@@ -1,5 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CleanWebpackPlugin = require("clean-webpack-plugin")
 const path = require("path")
+const buildDir = "src/main/resources/public"
 
 module.exports = {
     entry: {
@@ -7,7 +10,7 @@ module.exports = {
         client: "./src/main/react/software/wecreate/hadouken/client.js"
     },
     output: {
-        path: path.join(__dirname, "src/main/resources/public"),
+        path: path.join(__dirname, buildDir),
         filename: "[name].js"
     },
     devServer: {
@@ -18,13 +21,27 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
+                use: [
+                    "babel-loader"
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader",
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader",
+                    "sass-loader"
+                ]
             }
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(buildDir, {}),
+        new MiniCssExtractPlugin({
+            filename: "style.css"
+        }),
         new HtmlWebpackPlugin({
             hash: true,
             template: "src/main/react/software/wecreate/hadouken/index.html",
