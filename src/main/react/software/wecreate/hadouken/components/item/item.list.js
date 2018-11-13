@@ -1,18 +1,14 @@
-import React, { Component, PropTypes } from "react"
+import React, { Component } from "react"
+import PropTypes from "prop-types"
 import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import { addItem, deleteItem } from "./item.action.creators"
 
 class ItemList extends Component {
     render () {
-        const { items, addItem, deleteItem } = this.props
+        const { items } = this.props
 
         return (
             <div>
-                <form onSubmit={ (e) => {
-                    e.preventDefault()
-                    addItem(this.refs.name.value)
-                } }>
+                <form onSubmit={ () => console.log("add item") }>
                     <input type="text" name="name" ref="name"/>
                     <button type="submit">Add</button>
                 </form>
@@ -20,10 +16,7 @@ class ItemList extends Component {
                     {
                         items.map((item) => {
                             return (
-                                <li key={ item.name }>{ item.name } <a className="delete" onClick={ (e) => {
-                                    e.preventDefault()
-                                    deleteItem(item.name)
-                                } }>&times;</a></li>
+                                <li key={ item.name }>{ item.name } <a className="delete" onClick={ () => console.log("deleted item") }>&times;</a></li>
                             )
                         })
                     }
@@ -41,8 +34,5 @@ const mapStateToProps = ({ items }) => ({
     items
 })
 
-function mapDispatchToProps (dispatch) {
-    return bindActionCreators({ addItem, deleteItem }, dispatch)
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemList)
+export const ItemListContainer = connect(mapStateToProps)(ItemList)

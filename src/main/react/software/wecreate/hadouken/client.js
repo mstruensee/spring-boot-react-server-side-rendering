@@ -1,7 +1,7 @@
 import React from "react"
 import thunk from "redux-thunk"
-import { render } from "react-dom"
-import { BrowserRouter } from "react-router"
+import { hydrate } from "react-dom"
+import { BrowserRouter } from "react-router-dom"
 import { applyMiddleware, createStore } from "redux"
 import { Provider } from "react-redux"
 import { reducers } from "./reducers"
@@ -17,4 +17,4 @@ const markup = (
     </Provider>
 )
 
-render(markup, document.getElementById("hadouken"))
+hydrate(markup, document.getElementById("hadouken"))

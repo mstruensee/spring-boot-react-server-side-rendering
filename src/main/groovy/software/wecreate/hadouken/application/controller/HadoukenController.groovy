@@ -13,7 +13,6 @@ class HadoukenController {
 	//ignore client side file requests / api calls
 	@GetMapping("/{path:(?!.*.js|.*.css|.*.jpg|api).*\$}")
 	def index(Model model, HttpServletRequest request) {
-		println "aaaaaa" + request.servletPath
 		def mapper = new ObjectMapper()
 
 		def req = [:]

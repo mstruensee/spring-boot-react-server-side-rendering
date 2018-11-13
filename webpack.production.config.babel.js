@@ -2,7 +2,7 @@
 import path from "path"
 import webpack from "webpack"
 import autoprefixer from "autoprefixer"
-import ExtractTextPlugin from "extract-text-webpack-plugin"
+import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 
 export default {
@@ -18,7 +18,6 @@ export default {
         extensions: ["", ".js", ".css"],
         alias: {
             "styles": __dirname + "/src/main/react/software/wecreate/hadouken/styles",
-            "components": __dirname + "/app/scripts/components",
             "images": __dirname + "/src/main/react/software/wecreate/hadouken/images"
         }
     },
@@ -33,15 +32,10 @@ export default {
     postcss: [autoprefixer({ browsers: ["last 5 versions"] })],
     sassLoader: { precision: 8 },
     plugins: [
-        new webpack.DefinePlugin({
-            "process.env": {
-                "NODE_ENV": JSON.stringify("production")
-            }
-        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: { warnings: true }
         }),
-        new ExtractTextPlugin("/[name].css"),
+        new MiniCssExtractPlugin("/[name].css"),
         new HtmlWebpackPlugin({
             hash: true,
             template: "src/main/react/software/wecreate/hadouken/index.html",
