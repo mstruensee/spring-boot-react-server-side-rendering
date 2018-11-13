@@ -4,7 +4,7 @@ import { Home } from "../home/home"
 import { Child } from "../child/child"
 import { FourOhFour } from "../404/four.oh.four"
 
-// import "../../styles/main.css"
+import "../../styles/main.scss"
 
 export const Hadouken = () => (
     <div>

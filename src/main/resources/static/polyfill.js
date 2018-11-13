@@ -11,3 +11,4 @@ window.Promise = {
     resolve: function () {},
     reject: function() {}
 };
+window.document = null
