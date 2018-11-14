@@ -1,12 +1,14 @@
 /* global __dirname */
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const CleanWebpackPlugin = require("clean-webpack-plugin")
-const AssetsPlugin = require("assets-webpack-plugin")
-const path = require("path")
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import CleanWebpackPlugin from "clean-webpack-plugin"
+import AssetsPlugin from "assets-webpack-plugin"
+import path from "path"
+
 const buildDir = "src/main/resources/public"
 
 module.exports = {
+    mode: "development",
     entry: {
         server: "./src/main/react/software/wecreate/hadouken/server.js",
         client: "./src/main/react/software/wecreate/hadouken/client.js"

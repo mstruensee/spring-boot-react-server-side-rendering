@@ -1,49 +1,64 @@
-/*global __dirname*/
-import path from "path"
-import webpack from "webpack"
-import autoprefixer from "autoprefixer"
-import MiniCssExtractPlugin from "mini-css-extract-plugin"
+/* global __dirname */
 import HtmlWebpackPlugin from "html-webpack-plugin"
+import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import CleanWebpackPlugin from "clean-webpack-plugin"
+import AssetsPlugin from "assets-webpack-plugin"
+import WebpackMd5Hash from "webpack-md5-hash"
+import path from "path"
 
-export default {
+const buildDir = "src/main/resources/public"
+
+module.exports = {
+    mode: "production",
     entry: {
         server: "./src/main/react/software/wecreate/hadouken/server.js",
         client: "./src/main/react/software/wecreate/hadouken/client.js"
     },
     output: {
-        path: path.join(__dirname, "src/main/resources/public"),
-        filename: "/[name].js"
+        path: path.join(__dirname, buildDir),
+        filename: "[name].[chunkhash].js"
     },
-    resolve: {
-        extensions: ["", ".js", ".css"],
-        alias: {
-            "styles": __dirname + "/src/main/react/software/wecreate/hadouken/styles",
-            "images": __dirname + "/src/main/react/software/wecreate/hadouken/images"
-        }
+    devServer: {
+        historyApiFallback: true
     },
     module: {
-        loaders: [
-            { test: /\.(css|scss)$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader") },
-            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-            { test: /\.(gif|png|jpg)$/, loader: "file-loader?name=images/[name].[ext]&mimeType=image/[ext]&limit=100000" },
-            { test: /\.(woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: "url-loader?limit=100000" }
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    "babel-loader"
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader",
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    "postcss-loader",
+                    "sass-loader"
+                ]
+            }
         ]
     },
-    postcss: [autoprefixer({ browsers: ["last 5 versions"] })],
-    sassLoader: { precision: 8 },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: { warnings: true }
+        new CleanWebpackPlugin(buildDir, {}),
+        new MiniCssExtractPlugin({
+            filename: "style.[contenthash].css"
         }),
-        new MiniCssExtractPlugin("/[name].css"),
+        new AssetsPlugin({
+            prettyPrint: true,
+            path: path.join(__dirname, buildDir)
+        }),
         new HtmlWebpackPlugin({
-            hash: true,
             template: "src/main/react/software/wecreate/hadouken/index.html",
             filename: "index.html",
             minify: {
                 collapseWhitespace: true
             },
             excludeChunks: ["server"]
-        })
+        }),
+        new WebpackMd5Hash()
     ]
 }
