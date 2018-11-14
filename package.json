@@ -10,7 +10,7 @@
 		"build:development": "webpack --mode development --config ./webpack.development.config.babel.js",
 		"build:production": "webpack --mode production --config ./webpack.production.config.babel.js",
 		"watch": "webpack -d --watch --config ./webpack.development.config.babel.js",
-		"start:dev": "webpack-dev-server --colors --mode development --config ./webpack.development.config.babel.js"
+		"start:client": "webpack-dev-server --colors --mode development --config ./webpack.development.config.babel.js"
 	},
 	"dependencies": {
 		"prop-types": "15.6.2",

@@ -22,6 +22,6 @@ window.render = (template, model) => {
     )
 
     return template
-        .replace("SERVER_RENDERED_HTML", markup)
-        .replace("SERVER_PRELOADED_STATE", JSON.stringify(preloadedState))
+        .replace("<div id=\"hadouken\"></div>", `<div id="hadouken">${markup}</div>`)
+        .replace("window.__PRELOADED_STATE__ = undefined", `window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}`)
 }
