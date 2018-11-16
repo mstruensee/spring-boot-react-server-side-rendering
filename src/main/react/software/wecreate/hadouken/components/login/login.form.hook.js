@@ -11,7 +11,7 @@ export const LoginFormHooks = () => {
     const validateClickHandler = () => form.current.validate()
 
     const onSubmitHandler = () => {
-        if (!form.current.validate()) form.submit()
+        if (!form.current.validate()) form.current.submit()
     }
 
     return (
