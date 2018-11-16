@@ -8,12 +8,16 @@ export const LoginFormHooks = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
+    const validateClickHandler = () => form.current.validate()
+
+    const onSubmitHandler = () => {
+        if (!form.current.validate()) this.form.submit()
+    }
+
     return (
         <Form
             name={ "login" }
-            onSubmit={ () => {
-                if (!form.current.validate()) this.form.submit()
-            } }
+            onSubmit={ onSubmitHandler }
             action={ "/api/v1/auth/login" }
             method={ "post" }
             ref={ form }
@@ -27,7 +31,7 @@ export const LoginFormHooks = () => {
                 </Field>
             </FormSection>
             <FormFooter>
-                <Button appearance={ "primary" } type={ "submit" } onClick={ () => form.current.validate() }>
+                <Button appearance={ "primary" } type={ "submit" } onClick={ validateClickHandler }>
                     Login
                 </Button>
             </FormFooter>

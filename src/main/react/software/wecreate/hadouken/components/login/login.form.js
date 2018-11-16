@@ -16,9 +16,7 @@ export class LoginForm extends Component {
     }
 
     onSubmitHandler = () => {
-        if (!this.form.current.validate()) {
-            this.form.submit()
-        }
+        if (!this.form.current.validate()) this.form.submit()
     }
 
     validateClickHandler = () => {
