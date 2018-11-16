@@ -1,10 +1,14 @@
-import React, { Component, useState } from "react"
+import React, { Component } from "react"
 import FieldText from "@atlaskit/field-text"
 import Button from "@atlaskit/button"
-// import { Checkbox } from '@atlaskit/checkbox';
 import Form, { Field, FormFooter, FormSection } from "@atlaskit/form"
 
 export class LoginForm extends Component {
+
+    state = {
+        username: "",
+        password: ""
+    }
 
     constructor (props) {
         super(props)
@@ -12,25 +16,24 @@ export class LoginForm extends Component {
     }
 
     onSubmitHandler = () => {
-        console.log("onSubmitHandler")
-        // Calling validate on the form will update it's fields state
-        const validateResult = this.form.current.validate()
-        console.log(validateResult)
-
-        if (validateResult.isInvalid) {
-            console.log("onSubmitHandler = Form Fields Invalid")
-        } else {
-            // Now call submit when your done
+        if (!this.form.current.validate()) {
             this.form.submit()
         }
     }
 
     validateClickHandler = () => {
         this.form.current.validate()
-        console.log(this.form)
+    }
+
+    onFieldChangeHandler = ({ target: { name, value } }) => {
+        this.setState(() => ({
+            [name]: value
+        }))
     }
 
     render () {
+        const { username, password } = this.state
+
         return (
             <Form
                 name={ "login" }
@@ -41,10 +44,10 @@ export class LoginForm extends Component {
             >
                 <FormSection>
                     <Field isRequired validateOnChange invalidMessage="Invalid Message">
-                        <FieldText name={ "username" } placeholder={ "Username" } autoComplete={ "off" } isRequired shouldFitContainer/>
+                        <FieldText name={ "username" } placeholder={ "Username" } autoComplete={ "off" } value={ username } onChange={ this.onFieldChangeHandler } isRequired shouldFitContainer/>
                     </Field>
                     <Field isRequired validateOnChange>
-                        <FieldText name={ "password" } placeholder={ "Password" } type={ "password" } isRequired shouldFitContainer/>
+                        <FieldText name={ "password" } placeholder={ "Password" } type={ "password" } autoComplete={ "off" } value={ password } onChange={ this.onFieldChangeHandler } isRequired shouldFitContainer/>
                     </Field>
                 </FormSection>
                 <FormFooter>
