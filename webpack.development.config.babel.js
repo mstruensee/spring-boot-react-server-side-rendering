@@ -16,11 +16,12 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, buildDir),
-        filename: ".[name].js"
+        filename: "[name].js"
     },
     devServer: {
         historyApiFallback: true
     },
+    devtool: "eval-source-map",
     module: {
         rules: [
             {

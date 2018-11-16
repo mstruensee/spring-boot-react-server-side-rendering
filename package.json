@@ -13,17 +13,24 @@
 		"start:client": "webpack-dev-server --colors --mode development --config ./webpack.development.config.babel.js"
 	},
 	"dependencies": {
+		"@atlaskit/button": "9.0.16",
+		"@atlaskit/checkbox": "5.0.5",
+		"@atlaskit/field-text": "7.0.14",
+		"@atlaskit/form": "4.0.15",
 		"prop-types": "15.6.2",
-		"react": "16.6.1",
-		"react-dom": "16.6.1",
+		"react": "16.7.0-alpha.0",
+		"react-dom": "16.7.0-alpha.0",
 		"react-redux": "5.1.1",
 		"react-router": "4.3.1",
 		"react-router-dom": "4.3.1",
 		"redux": "4.0.1",
-		"redux-thunk": "2.3.0"
+		"redux-thunk": "2.3.0",
+		"styled-components": "3.4.9",
+		"validator": "10.9.0"
 	},
 	"devDependencies": {
 		"@babel/core": "7.1.5",
+		"@babel/plugin-proposal-class-properties": "7.1.0",
 		"@babel/preset-env": "7.1.5",
 		"@babel/preset-react": "7.0.0",
 		"@babel/register": "7.0.0",

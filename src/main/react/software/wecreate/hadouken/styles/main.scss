@@ -1,23 +1,50 @@
-html, body {
-	font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
-	background-color: darkcyan;
-}
-
-ul:not(.item-list) {
-	list-style-type: none;
+body, div, dl, fieldset, form, h1, h2, h3, h4, h5, h6, html, img, ol, p, pre, ul {
 	margin: 0;
-	padding: 0;
+	padding: 0
 }
 
-ul:not(.item-list) li {
-	display: inline;
-	margin: 0 1em 0 0;
+body, html {
+	height: 100%;
+	width: 100%
 }
 
-a {
-	cursor: pointer;
+
+body {
+	background-color: #26a699;
+	color: #FFFFFF;
 }
 
-.delete {
-	color: red;
+@media (max-width: 704px) {
+
+	body {
+		background-color: #FFFFFF;
+		color: #172B4D;
+	}
+
 }
+
+
+
+
+//html, body {
+//	font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+//}
+//
+//ul:not(.item-list) {
+//	list-style-type: none;
+//	margin: 0;
+//	padding: 0;
+//}
+//
+//ul:not(.item-list) li {
+//	display: inline;
+//	margin: 0 1em 0 0;
+//}
+//
+//a {
+//	cursor: pointer;
+//}
+//
+//.delete {
+//	color: red;
+//}
