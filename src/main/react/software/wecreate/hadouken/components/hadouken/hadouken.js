@@ -4,6 +4,8 @@ import { Home } from "../home/home"
 import { FourOhFour } from "../404/four.oh.four"
 
 import "../../styles/main.scss"
+import "../../../../../../../../node_modules/antd/dist/antd.css"
+
 import { LoginPage } from "../login/login.page"
 
 export const Hadouken = () => (
