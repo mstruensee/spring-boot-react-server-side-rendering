@@ -1,22 +1,17 @@
 import React from "react"
-import { Link, Match, Miss } from "react-router"
+import { Route, Switch } from "react-router-dom"
 import { Home } from "../home/home"
-import { Child } from "../child/child"
 import { FourOhFour } from "../404/four.oh.four"
 
-import "../../styles/main.css"
+import "../../styles/main.scss"
+import "../../../../../../../../node_modules/antd/dist/antd.css"
+
+import { LoginPage } from "../login/login.page"
 
 export const Hadouken = () => (
-    <div>
-        <h1>Hello Server Side Rendering!!!!</h1>
-        <ul>
-            <li><Link to={ "/" }>Home</Link></li>
-            <li><Link to={ "/child" }>Child</Link></li>
-        </ul>
-
-        <Match exactly pattern={ "/" } component={ Home }/>
-        <Match pattern={ "/child" } component={ Child }/>
-
-        <Miss component={ FourOhFour }/>
-    </div>
+    <Switch>
+        <Route path={ "/" } exact component={ Home }/>
+        <Route path={ "/login" } exact component={ LoginPage }/>
+        <Route component={ FourOhFour }/>
+    </Switch>
 )
