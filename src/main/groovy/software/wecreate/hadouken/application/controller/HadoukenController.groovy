@@ -1,6 +1,7 @@
-package software.wecreate.hadouken
+package software.wecreate.hadouken.application.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -8,32 +9,37 @@ import org.springframework.web.bind.annotation.GetMapping
 import javax.servlet.http.HttpServletRequest
 
 @Controller
-class IndexController {
+class HadoukenController {
+
+	@Autowired
+	ObjectMapper objectMapper
 
 	@GetMapping("/{path:(?!.*.js|.*.css|.*.jpg|api).*\$}")
-	def index(Model model, HttpServletRequest request) {
-		def mapper = new ObjectMapper()
+	String index(Model model, HttpServletRequest request) {
 
-		def req = [:]
-		def root = request.servletPath
+		Map requestData = [:]
+		String root = request.servletPath
 		if (request.servletPath == "/index.html")
 			root = "/"
 
 		if (request.queryString != null)
-			req.put("location", String.format("%s?%s", root, request.queryString))
+			requestData.put("location", String.format("%s?%s", root, request.queryString))
 		else
-			req.put("location", root)
-		model.addAttribute("req", mapper.writeValueAsString(req))
+			requestData.put("location", root)
 
-		def initialState = [:]
+		model.addAttribute("requestData", objectMapper.writeValueAsString(requestData))
 
-		initialState.put("items", [
+		//todo: this initial data will change based on page ... figure out best way to handle this
+		//todo: dto to match reducers + reducers initial states????
+		Map preloadedState = [:]
+
+		preloadedState.put("ITEMS_REDUCER", [
 			[id: 0, name: "zero", quantity: 0],
 			[id: 1, name: "one", quantity: 1],
 			[id: 2, name: "two", quantity: 2],
 			[id: 3, name: "three", quantity: 3]
 		])
-		model.addAttribute("initialState", mapper.writeValueAsString(initialState))
+		model.addAttribute("preloadedState", objectMapper.writeValueAsString(preloadedState))
 		return "index"
 	}
 }
