@@ -1,5 +1,5 @@
 import React from "react"
-import thunk from "redux-thunk"
+import ReduxThunk from "redux-thunk"
 import { renderToString } from "react-dom/server"
 import { StaticRouter } from "react-router-dom"
 import { applyMiddleware, createStore } from "redux"
@@ -11,7 +11,7 @@ window.render = (template, model) => {
     const { location } = JSON.parse(model.get("requestData"))
     const preloadedState = JSON.parse(model.get("preloadedState"))
 
-    const store = createStore(reducers, preloadedState, applyMiddleware(thunk))
+    const store = createStore(reducers, preloadedState, applyMiddleware(ReduxThunk))
 
     const markup = renderToString(
         <Provider store={ store }>

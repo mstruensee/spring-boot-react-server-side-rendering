@@ -4,14 +4,14 @@ import { Home } from "../home/home"
 import { FourOhFour } from "../404/four.oh.four"
 
 import "../../styles/main.scss"
-import "../../../../../../../../node_modules/antd/dist/antd.css"
+import { Child } from "../child/child"
+// import "../../../../../../../../node_modules/antd/dist/antd.css"
 
-import { LoginPage } from "../login/login.page"
 
 export const Hadouken = () => (
     <Switch>
         <Route path={ "/" } exact component={ Home }/>
-        <Route path={ "/login" } exact component={ LoginPage }/>
+        <Route path={ "/child" } exact component={ Child }/>
         <Route component={ FourOhFour }/>
     </Switch>
 )

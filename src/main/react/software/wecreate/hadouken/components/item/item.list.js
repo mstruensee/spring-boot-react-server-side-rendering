@@ -1,7 +1,5 @@
-import React, {
-    Component,
-    PropTypes
-} from "react"
+import React, { Component } from "react"
+import PropTypes from "prop-types"
 import { connect } from "react-redux"
 
 class ItemList extends Component {
@@ -14,19 +12,21 @@ class ItemList extends Component {
                     e.preventDefault()
                     console.log("form submit")
                 } }>
-                    <input type="text" name="name" ref="name"/>
-                    <button type="submit">Add</button>
+                    <input type={ "text" } name={ "name" }/>
+                    <button type={ "submit" }>Add</button>
                 </form>
-                <ul className="item-list">
+                <ul className={ "item-list" }>
                     {
-                        items.map((item) => {
-                            return (
-                                <li key={ item.name }>{ item.name } <a className="delete" onClick={ (e) => {
+                        items.map((item) => (
+                            <li key={ item.name }>{ item.name }
+                                <a className={ "delete" } onClick={ (e) => {
                                     e.preventDefault()
                                     console.log("delete item")
-                                } }>&times;</a></li>
-                            )
-                        })
+                                } }>
+                                    &times;
+                                </a>
+                            </li>
+                        ))
                     }
                 </ul>
             </div>
@@ -35,15 +35,15 @@ class ItemList extends Component {
 }
 
 ItemList.propTypes = {
-    items: PropTypes.array
+    items: PropTypes.array,
 }
 
 ItemList.defaultProps = {
-    items: []
+    items: [],
 }
 
 const mapStateToProps = ({ ITEMS_REDUCER }) => ({
-    items: ITEMS_REDUCER
+    items: ITEMS_REDUCER,
 })
 
-export default connect(mapStateToProps, null)(ItemList)
+export const ItemListContainer = connect(mapStateToProps, null)(ItemList)

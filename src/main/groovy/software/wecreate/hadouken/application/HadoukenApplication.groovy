@@ -10,10 +10,10 @@ import org.springframework.web.servlet.view.script.ScriptTemplateConfigurer
 import org.springframework.web.servlet.view.script.ScriptTemplateViewResolver
 
 @SpringBootApplication
-class Hadouken {
+class HadoukenApplication {
 
 	static void main(String[] args) {
-		SpringApplication.run Hadouken, args
+		SpringApplication.run HadoukenApplication, args
 	}
 
 	@Bean
@@ -24,14 +24,14 @@ class Hadouken {
 	@Bean
 	ScriptTemplateConfigurer scriptTemplateConfigurer() {
 		ObjectMapper objectMapper = new ObjectMapper()
-		ClassPathResource classPathResource = new ClassPathResource("public/webpack-assets.json")
-		Map assets = objectMapper.readValue(classPathResource.getFile(), Map)
+//		ClassPathResource classPathResource = new ClassPathResource("public/webpack-assets.json")
+//		Map assets = objectMapper.readValue(classPathResource.getFile(), Map)
 
 		def configurer = new ScriptTemplateConfigurer()
 		configurer.engineName = "nashorn"
 		configurer.setScripts(
 			"static/polyfill.js",
-			"public/${assets.server.js}"
+			"public/server.js"
 		)
 		configurer.renderFunction = "render"
 		return configurer
