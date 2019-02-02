@@ -16,7 +16,7 @@
         "watch": "webpack -d --watch"
     },
     "dependencies": {
-        "@wecreatesoftware/redux-higher-order-reducers": "2.0.0",
+        "@wecreatesoftware/redux-higher-order-reducers": "3.0.1",
         "es6-promise": "^4.2.5",
         "prop-types": "15.6.2",
         "react": "16.7.0",

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux"
-import { listReducer  } from "@wecreatesoftware/redux-higher-order-reducers"
+import { listReducer } from "@wecreatesoftware/redux-higher-order-reducers"
 
 const ITEMS_REDUCER = "ITEMS_REDUCER"
 

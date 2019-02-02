@@ -42,7 +42,6 @@ export default {
             minify: {
                 collapseWhitespace: false
             },
-            excludeChunks: ["server"]
         })
     ]
 }
